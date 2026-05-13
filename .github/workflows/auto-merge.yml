@@ -74,7 +74,7 @@ jobs:
             console.log(`${eligible.length} PR(s) above score threshold`);
 
             // 5. Try to merge from best to worst
-            for (const { pr, score } of eligible) {
+            for (const { pr, score, thumbsUp, thumbsDown } of eligible) {
               console.log(`\nTrying PR #${pr.number} (score=${score.toFixed(3)})...`);
 
               // Check mergeability
@@ -99,7 +99,7 @@ jobs:
                   repo,
                   pull_number: pr.number,
                   merge_method: 'squash',
-                  commit_title: `Auto-merge: ${pr.title} (👍${pr.thumbsUp}/👎${pr.thumbsDown})`,
+                  commit_title: `Auto-merge: ${pr.title} (👍${thumbsUp}/👎${thumbsDown})`,
                 });
                 console.log(`  ✅ MERGED! PR #${pr.number} — "${pr.title}"`);
 
