@@ -31,7 +31,7 @@ jobs:
             // 1. Fetch all open PRs
             const prs = await github.paginate(
               github.rest.pulls.list,
-              { owner, repo, state: 'open', sort: 'created', direction: 'desc' }
+              { owner, repo, state: 'open', sort: 'created', direction: 'asc' }
             );
 
             if (prs.length === 0) {
